@@ -1,0 +1,49 @@
+<div class="flex-center mt-1rem">
+    <div class="container-fluid w-full">
+        <app-title name="Edit Question"></app-title>
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="questionUpdateForm">
+                    <div class="mb-1rem">
+                        <h3>Question</h3>
+                    </div>
+                    <mat-form-field class="w-full">
+                        <textarea type="text" formControlName="question" name="question" [value]="question.question"
+                            matInput></textarea>
+                        <mat-error>
+                            <val-lt-whitespace [formGroup]="questionUpdateForm" data="question"
+                                name="question"></val-lt-whitespace>
+                        </mat-error>
+                    </mat-form-field>
+                    <h3>Multiple Choice</h3>
+                    <mat-grid-list cols="2" rowHeight="3.5rem">
+                        <mat-grid-tile *ngFor="let data of question.answers; index as i">
+                            <div class="question-answer">
+                                <ng-container *ngIf="data.isAnswer">
+                                    <input type="text" [value]="data.answer" disabled class="question-answer-input">
+                                    <button mat-mini-fab class="question-answer-button btn-success">
+                                        <mat-icon>done</mat-icon>
+                                    </button>
+                                </ng-container>
+                                <ng-container *ngIf="!data.isAnswer">
+                                    <input type="text" [value]="data.answer" class="question-answer-input">
+                                    <button mat-mini-fab class="question-answer-button disabled">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </ng-container>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                    <div class="mt-1rem">
+                        <button (click)="onUpdate()"
+                            [disabled]="questionUpdateForm.invalid || questionUpdateForm.value.trueAnswer === ''"
+                            mat-raised-button class="my-1rem" color="primary" id="submit-question">
+                            <mat-icon>save</mat-icon>
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

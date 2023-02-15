@@ -1,0 +1,4 @@
+<small *ngIf="formGroup.controls[data].dirty && formGroup.controls[data].errors?.['required']">Please enter
+    {{name}}.</small>
+<small *ngIf="formGroup.controls[data].errors?.['leadingTrailingWhitespace'] && formGroup.controls[data].touched 
+        && !formGroup.controls[data].errors?.['required'] ">Please enter valid data.</small>

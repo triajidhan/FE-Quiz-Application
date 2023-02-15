@@ -1,0 +1,28 @@
+<div class="flex-center bg-primary">
+    <mat-toolbar color="primary" class="nav-container">
+        <mat-toolbar-row class="flex-between">
+            <div class="flex">
+                <h3 class="nav-title">Quiz App</h3>
+                <div *ngFor="let navMenu of navMenus" class="nav-menus">
+                    <button mat-button routerLink={{navMenu.routerLink}}>
+                        <mat-icon>{{navMenu.icon}}</mat-icon>
+                        {{navMenu.label}}
+                    </button>
+                </div>
+            </div>
+            <div>
+                <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="profile menu icon">
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+                <mat-menu #profileMenu="matMenu" yPosition="below">
+                    <ng-container *ngFor="let profile of profiles">
+                        <button mat-menu-item (click)="toProfile(profile.label)">
+                            <mat-icon>{{profile.icon}}</mat-icon>
+                            {{profile.label}}
+                        </button>
+                    </ng-container>
+                </mat-menu>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

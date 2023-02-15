@@ -1,0 +1,27 @@
+<div class="flex-center mt-1rem">
+  <div class="container-fluid w-full">
+    <app-title name="Testing"></app-title>
+    <mat-card>
+      <mat-card-content>
+        <table class="w-full">
+          <thead>
+            <tr>
+              <td>ID</td>
+              <td>Name</td>
+              <td>Email</td>
+              <td>Role</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users$ | async">
+              <td>{{ user.id }}</td>
+              <td>{{ user.fullName }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.roleName }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

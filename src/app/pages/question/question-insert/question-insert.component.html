@@ -1,0 +1,58 @@
+<div class="flex-center mt-1rem">
+    <div class="container-fluid w-full">
+        <app-title name="Add Question"></app-title>
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="questionInsertForm">
+                    <div class="mb-1rem">
+                        <h3>Question</h3>
+                    </div>
+                    <mat-form-field class="w-full">
+                        <textarea type="text" formControlName="question" name="question" matInput></textarea>
+                        <mat-error>
+                            <val-lt-whitespace [formGroup]="questionInsertForm" data="question"
+                                name="question"></val-lt-whitespace>
+                        </mat-error>
+                    </mat-form-field>
+                    <h3>Multiple Choice</h3>
+                    <mat-radio-group formControlName="trueAnswer">
+                        <form [formGroup]="answerInsertFormArray">
+                            <ng-container formArrayName="details">
+                                <mat-grid-list cols="2" rowHeight="3.5rem">
+                                    <mat-grid-tile *ngFor="let data of details.controls; index as i"
+                                        [formGroupName]="i">
+                                        <div class="question-answer">
+                                            <mat-radio-button [value]="i"></mat-radio-button>
+                                            <input type="text" formControlName="answer" class="question-answer-input">
+                                            <button *ngIf=" i < 4 " mat-mini-fab
+                                                class="question-answer-button disabled">
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
+                                            <button *ngIf=" i >= 4 " mat-mini-fab color="warn" (click)="onRemove(i)"
+                                                class="question-answer-button">
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </ng-container>
+                        </form>
+                    </mat-radio-group>
+                    <div class="flex mt-1rem">
+                        <button (click)="onAdd()" [disabled]="questionInsertForm.invalid" mat-raised-button
+                            class="my-1rem mr-1rem" id="submit-question">
+                            <mat-icon>add</mat-icon>
+                            Multiple Choice
+                        </button>
+                        <button (click)="submitQuestion()"
+                            [disabled]="questionInsertForm.invalid || questionInsertForm.value.trueAnswer === ''"
+                            mat-raised-button class="my-1rem" color="primary" id="submit-question">
+                            <mat-icon>save</mat-icon>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.nav-container {
+    max-width: 1300px;
+
+    .nav-title {
+        margin-right: 2rem;
+    }
+
+    .nav-menus {
+        margin-left: 1rem;
+    }
+
+    .header-toolbar-row {
+        display: flex;
+        justify-content: center;
+    }
+}
